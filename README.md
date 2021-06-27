@@ -20,21 +20,22 @@
 
 ## items テーブル
 
-| Column             | Type    | Options     |
-| ------------------ | ------- | ----------- |
-| name               | string  | null: false |
-| description        | string  | null: false |
-| category_id        | integer | null: false |
-| status_id          | integer | null: false |
-| burden_id          | integer | null: false |
-| prefecture_id      | integer | null: false |
-| wait_day_id        | integer | null: false |
-| price              | integer | null: false |
+| Column             | Type      | Options                        |
+| ------------------ | --------- | ------------------------------ |
+| name               | string    | null: false                    |
+| description        | text      | null: false                    |
+| category_id        | integer   | null: false                    |
+| status_id          | integer   | null: false                    |
+| burden_id          | integer   | null: false                    |
+| prefecture_id      | integer   | null: false                    |
+| wait_day_id        | integer   | null: false                    |
+| price              | integer   | null: false                    |
+| user_id            | reference | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :purchases
+- has_one :purchase
 
 ## purchases テーブル
 
@@ -47,7 +48,7 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :shipping_addresses
+- has_one :shipping_address
 
 ## shipping_addresses テーブル
 
@@ -59,8 +60,8 @@
 | address        | string     | null: false                    |
 | building       | string     |                                |
 | phone_number   | string     | null: false                    |
-| purchase_id    | reference  | null: false, foreign_key: true |
+| purchase       | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :purchase
