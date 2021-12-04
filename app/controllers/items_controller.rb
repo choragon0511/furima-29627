@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = Item.order("created_at DESC")
+    @items = Item.all
   end
 
   def new
@@ -19,12 +19,11 @@ class ItemsController < ApplicationController
 
   private
 
-  def message_params
-    params.require(:item).permit(:content, :image).merge(user_id: current_user.id)
-  end
-
   def item_params
-    params.require(:item).permit(:image, :name, :description, :category_id, :status_id, :burden_id, :prefecture_id, :wait_day_id, :price, :user)
+    params.require(:item).permit(
+      :image, :name, :description, :category_id, :status_id,
+      :burden_id, :prefecture_id, :wait_day_id, :price, :user
+    ).merge(user_id: current_user.id)
   end
 
 end
