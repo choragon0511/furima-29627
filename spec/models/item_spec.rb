@@ -29,27 +29,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
       it "category_idが空では登録できない" do
-        @item.category_id = ""
+        @item.category_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it "status_idが空では登録できない" do
-        @item.status_id = ""
+        @item.status_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end
       it "burden_idが空では登録できない" do
-        @item.burden_id = ""
+        @item.burden_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include("Burden can't be blank")
       end
       it "prefecture_idが空では登録できない" do
-        @item.prefecture_id = ""
+        @item.prefecture_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it "wait_day_idが空では登録できない" do
-        @item.wait_day_id = ""
+        @item.wait_day_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include("Wait day can't be blank")
       end
@@ -72,6 +72,11 @@ RSpec.describe Item, type: :model do
         @item.price = "abc"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid. Input half-width characters")
+      end
+      it 'ユーザーが紐付いていなければ登録できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
