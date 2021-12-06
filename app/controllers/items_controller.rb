@@ -26,5 +26,4 @@ class ItemsController < ApplicationController
       :burden_id, :prefecture_id, :wait_day_id, :price, :user
     ).merge(user_id: current_user.id)
   end
-
 end

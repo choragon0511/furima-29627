@@ -29,12 +29,12 @@ RSpec.describe User, type: :model do
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include "Email has already been taken"
+        expect(another_user.errors.full_messages).to include 'Email has already been taken'
       end
       it 'メールアドレスは@を含む必要があること' do
-        @user.email = @user.email.delete("@")
+        @user.email = @user.email.delete('@')
         @user.valid?
-        expect(@user.errors.full_messages).to include "Email is invalid"
+        expect(@user.errors.full_messages).to include 'Email is invalid'
       end
       it 'パスワードが必須であること' do
         @user.password = ''
@@ -45,25 +45,25 @@ RSpec.describe User, type: :model do
         @user.password = '1q2w3'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
+        expect(@user.errors.full_messages).to include 'Password is too short (minimum is 6 characters)'
       end
       it 'パスワードは半角英数字混合であること、数字のみでは登録できない' do
         @user.password = '123456'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is invalid. Include both letters and numbers"
+        expect(@user.errors.full_messages).to include 'Password is invalid. Include both letters and numbers'
       end
       it 'パスワードは半角英数字混合であること、英字のみでは登録できない' do
         @user.password = 'abcdef'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is invalid. Include both letters and numbers"
+        expect(@user.errors.full_messages).to include 'Password is invalid. Include both letters and numbers'
       end
       it 'パスワードは半角英数字混合であること、全角文字を含むと登録できない' do
         @user.password = 'あ1q2w3e'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is invalid. Include both letters and numbers"
+        expect(@user.errors.full_messages).to include 'Password is invalid. Include both letters and numbers'
       end
       it 'パスワードは確認用を含めて2回入力すること' do
         @user.password_confirmation = ''
@@ -83,12 +83,12 @@ RSpec.describe User, type: :model do
       it 'ユーザー本名、名字は全角（漢字・ひらがな・カタカナ）で入力させること' do
         @user.last_name = '1q'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Last name is invalid. Input full-width characters"
+        expect(@user.errors.full_messages).to include 'Last name is invalid. Input full-width characters'
       end
       it 'ユーザー本名、名前は全角（漢字・ひらがな・カタカナ）で入力させること' do
         @user.first_name = '1q'
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name is invalid. Input full-width characters"
+        expect(@user.errors.full_messages).to include 'First name is invalid. Input full-width characters'
       end
       it 'ユーザー本名のフリガナ、名字が必須であること' do
         @user.last_name_kana = ''
@@ -103,18 +103,18 @@ RSpec.describe User, type: :model do
       it 'ユーザー本名のフリガナ、名字は全角（カタカナ）で入力させること' do
         @user.last_name_kana = '1q'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Last name kana is invalid. Input full-width katakana characters"
+        expect(@user.errors.full_messages).to include 'Last name kana is invalid. Input full-width katakana characters'
       end
       it 'ユーザー本名のフリガナ、名前は全角（カタカナ）で入力させること' do
         @user.first_name_kana = '1q'
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name kana is invalid. Input full-width katakana characters"
+        expect(@user.errors.full_messages).to include 'First name kana is invalid. Input full-width katakana characters'
       end
       it '生年月日が必須であること' do
         @user.birthday = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Birthday can't be blank"
       end
-    end    
+    end
   end
 end
