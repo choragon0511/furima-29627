@@ -1,4 +1,4 @@
-class Waitday < ActiveHash::Base
+class WaitDay < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '１〜２で発送' },

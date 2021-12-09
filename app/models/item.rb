@@ -5,8 +5,9 @@ class Item < ApplicationRecord
   belongs_to :status
   belongs_to :burden
   belongs_to :prefecture
-  belongs_to :waitday
+  belongs_to :wait_day
   belongs_to :user
+  has_one :purchase
 
   validates :image, :name, :description, :category_id, :status_id,
             :burden_id, :prefecture_id, :wait_day_id, :price, presence: true
