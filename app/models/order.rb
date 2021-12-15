@@ -1,8 +1,8 @@
 class Order
   include ActiveModel::Model
-  attr_accessor :token, :user, :item, :postal_code, :prfecture_id, :municipality, :address, :building, :phone_number, :purchase
+  attr_accessor :token, :user, :item, :postal_code, :prefecture_id, :municipality, :address, :building, :phone_number, :purchase
 
-  validates :token, :postal_code, :prfecture_id, :municipality,
+  validates :token, :postal_code, :prefecture_id, :municipality,
             :address, :phone_number, presence: true
 
   validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)" }
