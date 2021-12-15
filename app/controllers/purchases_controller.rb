@@ -9,7 +9,6 @@ class PurchasesController < ApplicationController
 
   def create
     @order = Order.new(purchase_params)
-    # @order.valid?
     if @order.valid?
       redirect_to root_path
     else
@@ -20,7 +19,7 @@ class PurchasesController < ApplicationController
   private
 
   def purchase_params
-    params.require(:order).permit(:token, :user, :item, :postal_code, :prefecture_id, :municipality, :address, :building, :phone_number, :purchase)
+    params.require(:order).permit(:user, :item, :postal_code, :prefecture_id, :municipality, :address, :building, :phone_number, :purchase).merge(token: params[:token])
    end
   
 
