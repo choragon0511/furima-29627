@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :not_user_move, only: [:edit, :destroy]
 
   def index
-    @items = Item.order("created_at DESC")
+    @items = Item.order('created_at DESC')
   end
 
   def new
@@ -53,8 +53,6 @@ class ItemsController < ApplicationController
   end
 
   def not_user_move
-    if current_user.id != @item.user_id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id != @item.user_id
   end
 end
