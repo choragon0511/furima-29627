@@ -7,12 +7,12 @@ RSpec.describe Order, type: :model do
 
   describe '商品購入' do
     context '商品購入できる場合' do
-      it "すべての値が正しく入力されていれば購入できること" do
+      it 'すべての値が正しく入力されていれば購入できること' do
         expect(@order).to be_valid
       end
-      it "buildingがなくても購入できる" do
+      it 'buildingがなくても購入できる' do
         @order.building = ''
-        expect(@order).to be_valid        
+        expect(@order).to be_valid
       end
     end
     context '商品購入できない場合' do
@@ -39,7 +39,7 @@ RSpec.describe Order, type: :model do
       it 'postal_codeに-が必要である' do
         @order.postal_code = '1234567'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@order.errors.full_messages).to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
       end
       it 'prefecture_idがないと購入できない' do
         @order.prefecture_id = 1
@@ -64,12 +64,12 @@ RSpec.describe Order, type: :model do
       it 'phone_numberは数字のみ使える' do
         @order.phone_number = 'aaabbbbcccc'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@order.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
       it 'phone_numberは10〜11桁の必要がある' do
         @order.phone_number = '090111222'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number is too short")
+        expect(@order.errors.full_messages).to include('Phone number is too short')
       end
       it 'purchase_idがないと購入できない' do
         @order.purchase_id = ''
