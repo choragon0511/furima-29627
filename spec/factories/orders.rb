@@ -9,6 +9,5 @@ FactoryBot.define do
     address { '123' }
     building { 'ビル１０１' }
     phone_number { '09011112222' }
-    purchase_id { 1 }
   end
 end

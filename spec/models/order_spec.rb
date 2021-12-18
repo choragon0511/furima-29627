@@ -71,11 +71,6 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include('Phone number is too short')
       end
-      it 'purchase_idがないと購入できない' do
-        @order.purchase_id = ''
-        @order.valid?
-        expect(@order.errors.full_messages).to include("Purchase can't be blank")
-      end
     end
   end
 end
