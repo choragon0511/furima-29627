@@ -11,7 +11,9 @@ class Order
 
   validates :phone_number, numericality: { only_integer: true, message: 'is invalid. Input only number' }
 
-  validates :phone_number, format: { with: /.{10,11}/, message: 'is too short' }
+  validates :phone_number, length: { minimum: 10, message: 'is too short' }
+
+  validates :phone_number, length: { maximum: 11, message: 'is too long' }
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
